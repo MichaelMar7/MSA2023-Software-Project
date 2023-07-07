@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj": {}
+    "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj": {}
   },
   "projects": {
-    "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj": {
+    "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
+        "projectUniqueName": "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
         "projectName": "Back-End",
-        "projectPath": "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
+        "projectPath": "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
         "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\obj\\",
+        "outputPath": "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,6 +42,20 @@
           "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.8, )"
             },
