@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Back_End.Models;
-using System.Web;
+﻿using Back_End.Models;
+//using Back_End.Services;
+
 using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Back_End.Controllers
 {
@@ -27,7 +27,6 @@ namespace Back_End.Controllers
             CocPlayer player = null;
             tag = tag.Substring(1, tag.Length - 1);
             string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{tag}";
-            //url = HttpUtility.UrlEncode(url);
 
             HttpResponseMessage response = await _client.GetAsync(url);
 
@@ -41,7 +40,6 @@ namespace Back_End.Controllers
                 throw new Exception(response.ReasonPhrase);
             }
         }
-
         
         [HttpGet("/CrPlayer/")]
         public async Task<CrPlayer> getCrPlayer(string tag)

@@ -1,4 +1,5 @@
 using Back_End.Contexts;
+using Back_End.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<UserContext>(options =>
 {
     options.UseSqlServer(configuration.GetConnectionString("sqlDatabase"));
 });
+
+builder.Services.AddScoped<UserService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
