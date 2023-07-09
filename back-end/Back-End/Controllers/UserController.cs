@@ -2,10 +2,12 @@
 using Back_End.Contexts;
 using Back_End.Services;
 
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Back_End.Controllers
 {
@@ -13,39 +15,73 @@ namespace Back_End.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserService _service;
+        public static User authuser;
+        public static JwtSecurityToken token;
+
+        private readonly IUserService _service;
+        private readonly IConfiguration _configuration;
         //private UserContext _users;
 
-        public UserController(UserService service)
+        public UserController(IUserService service, IConfiguration configuration)
         {
             _service = service;
-            //_users = users;
+            _configuration = configuration;
         }
 
-        [HttpGet("/Authenticate/")]
-        public async Task<ActionResult<User>> Authenticate(string username, string password)
+        [HttpPost("/Authenticate/")]
+        public async Task<ActionResult<string>> Authenticate(string username, string password)
         {
             var user = await _service.Authenticate(username, password);
-            //var user = await _users.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
 
             if (user == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+
+            authuser = user;
+            string token = CreateToken(user);
+            return Ok(token);
         }
 
         [HttpPost("/Register/")]
         public async Task<ActionResult<User>> Register(string username, string password)
         {
             var user = await _service.Register(username, password);
-            //var user = await _users.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
 
             if (user == null)
             {
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        /*
+        [HttpPost("/Logout/")]
+        public async Task<ActionResult<User>> Logout()
+        {
+            authuser = null;
+            token = null;
+            return Ok();
+        }
+        */
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Username) };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
         }
     }
 }

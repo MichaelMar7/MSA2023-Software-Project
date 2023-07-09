@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0M6Ni4a2rMZyPyyLUbKjMWHI7BqwMsJPZgVyhb54zsoHsAd8WC3bFWUpagcuoXBPd9Rkg7OKdqRqdWNLqsEc8w==",
+  "dgSpecHash": "0HKnc9ohypx+w8qTkgKr8UL8ha2qTmTOMR8TYu4fYRmLYfgCKVoJh2B+VaERwdPxeEf2SqCL+G8ZCSebU8VUiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
+  "projectFilePath": "c:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\micha\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
