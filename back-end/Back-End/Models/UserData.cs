@@ -12,8 +12,8 @@ namespace Back_End.Models
         [Required]
         public string UserId { get; set; }
 
-        public string CocTag { get; set; }
-        public string CrTag { get; set; }
-        public string BsTag { get; set; }
+        public string? CocTag { get; set; }
+        public string? CrTag { get; set; }
+        public string? BsTag { get; set; }
     }
 }

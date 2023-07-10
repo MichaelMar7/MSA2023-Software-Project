@@ -8,6 +8,7 @@ namespace Back_End.Services
     public class UserService : IUserService
     {
         private UserContext _users;
+
         public UserService(UserContext users)
         {
             _users = users;

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_End.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230708081019_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230710022712_InitialMigrationv2")]
+    partial class InitialMigrationv2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,15 +50,12 @@ namespace Back_End.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BsTag")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CocTag")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CrTag")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")

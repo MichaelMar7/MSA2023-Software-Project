@@ -1,5 +1,4 @@
 ﻿using Back_End.Models;
-using Back_End.Contexts;
 using Back_End.Services;
 
 using System.Security.Claims;
@@ -28,7 +27,7 @@ namespace Back_End.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("/Authenticate/")]
+        [HttpPost("/Authenticate")]
         public async Task<ActionResult<string>> Authenticate(string username, string password)
         {
             var user = await _service.Authenticate(username, password);
@@ -43,7 +42,7 @@ namespace Back_End.Controllers
             return Ok(token);
         }
 
-        [HttpPost("/Register/")]
+        [HttpPost("/Register")]
         public async Task<ActionResult<User>> Register(string username, string password)
         {
             var user = await _service.Register(username, password);
