@@ -3,6 +3,7 @@ using Back_End.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Back_End.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20230712012209_multitagv2")]
+    partial class multitagv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +34,14 @@ namespace Back_End.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserDataId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BsPlayerTags");
+                    b.HasIndex("UserDataId");
+
+                    b.ToTable("BsPlayerTag");
                 });
 
             modelBuilder.Entity("Back_End.Models.CocPlayerTag", b =>
@@ -50,13 +54,14 @@ namespace Back_End.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserDataId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CocPlayerTags");
+                    b.HasIndex("UserDataId");
+
+                    b.ToTable("CocPlayerTag");
                 });
 
             modelBuilder.Entity("Back_End.Models.CrPlayerTag", b =>
@@ -69,13 +74,14 @@ namespace Back_End.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UserDataId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("CrPlayerTags");
+                    b.HasIndex("UserDataId");
+
+                    b.ToTable("CrPlayerTag");
                 });
 
             modelBuilder.Entity("Back_End.Models.User", b =>
@@ -110,6 +116,36 @@ namespace Back_End.Migrations
                     b.HasKey("UserDataId");
 
                     b.ToTable("UserDatas");
+                });
+
+            modelBuilder.Entity("Back_End.Models.BsPlayerTag", b =>
+                {
+                    b.HasOne("Back_End.Models.UserData", null)
+                        .WithMany("BsPlayerTags")
+                        .HasForeignKey("UserDataId");
+                });
+
+            modelBuilder.Entity("Back_End.Models.CocPlayerTag", b =>
+                {
+                    b.HasOne("Back_End.Models.UserData", null)
+                        .WithMany("CocPlayerTags")
+                        .HasForeignKey("UserDataId");
+                });
+
+            modelBuilder.Entity("Back_End.Models.CrPlayerTag", b =>
+                {
+                    b.HasOne("Back_End.Models.UserData", null)
+                        .WithMany("CrPlayerTags")
+                        .HasForeignKey("UserDataId");
+                });
+
+            modelBuilder.Entity("Back_End.Models.UserData", b =>
+                {
+                    b.Navigation("BsPlayerTags");
+
+                    b.Navigation("CocPlayerTags");
+
+                    b.Navigation("CrPlayerTags");
                 });
 #pragma warning restore 612, 618
         }

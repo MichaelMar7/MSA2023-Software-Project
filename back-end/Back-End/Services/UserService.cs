@@ -26,7 +26,7 @@ namespace Back_End.Services
             User user = new User { UserId = Guid.NewGuid().ToString(), Username = username, Password = password };
             UserData userdata = new UserData { UserDataId = Guid.NewGuid().ToString(), UserId = user.UserId };
             await _users.Users.AddAsync(user);
-            await _users.UserDatas.AddAsync(userdata);
+            //await _users.UserDatas.AddAsync(userdata);
             await _users.SaveChangesAsync();
             return user;
         }

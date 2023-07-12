@@ -12,8 +12,14 @@ namespace Back_End.Models
         [Required]
         public string UserId { get; set; }
 
-        public string? CocTag { get; set; }
-        public string? CrTag { get; set; }
-        public string? BsTag { get; set; }
+        //public ICollection<CocPlayerTag> CocPlayerTags { get; set; }
+        //public ICollection<CrPlayerTag> CrPlayerTags { get; set; }
+        //public ICollection<BsPlayerTag> BsPlayerTags { get; set; }
+
+        
+        //public string? CocTag { get; set; }
+        //public string? CrTag { get; set; }
+        //public string? BsTag { get; set; }
+        
     }
 }

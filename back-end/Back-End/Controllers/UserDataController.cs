@@ -22,16 +22,15 @@ namespace Back_End.Controllers
             _client = client;
             _service = service;
         }
-
-        [HttpGet("/UserCocPlayer/{id}")]
-        public async Task<CocPlayer> GetUserCocPlayer(string id)
+        
+        [HttpGet("/GetCocPlayer")]
+        public async Task<CocPlayer> GetUserCocPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
 
-            UserData user = await _service.GetUserData(id);
-            if (user == null) return null;
+            CocPlayerTag playerTagObj = await _service.GetCocPlayerTag(id, tag);
+            if (playerTagObj == null) return null;
 
-            string tag = user.CocTag;
             tag = tag.Substring(1, tag.Length - 1);
             string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{tag}";
 
@@ -49,15 +48,14 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpGet("/UserCrPlayer/{id}")]
-        public async Task<CrPlayer> GetUserCrPlayer(string id)
+        [HttpGet("/GetCrPlayer")]
+        public async Task<CrPlayer> GetUserCrPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
 
-            UserData user = await _service.GetUserData(id);
-            if (user == null) return null;
+            CrPlayerTag playerTagObj = await _service.GetCrPlayerTag(id, tag);
+            if (playerTagObj == null) return null;
 
-            string tag = user.CrTag;
             tag = tag.Substring(1, tag.Length - 1);
             string url = $"https://proxy.royaleapi.dev/v1/players/%23{tag}";
 
@@ -75,15 +73,14 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpGet("/UserBsPlayer/{id}")]
-        public async Task<BsPlayer> GetUserBsPlayer(string id)
+        [HttpGet("/GetBsPlayer")]
+        public async Task<BsPlayer> GetUserBsPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
 
-            UserData user = await _service.GetUserData(id);
-            if (user == null) return null;
+            BsPlayerTag playerTagObj = await _service.GetBsPlayerTag(id, tag);
+            if (playerTagObj == null) return null;
 
-            string tag = user.BsTag;
             tag = tag.Substring(1, tag.Length - 1);
             string url = $"https://bsproxy.royaleapi.dev/v1/players/%23{tag}";
 
@@ -101,47 +98,75 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpPut("UpdateCocTag/{id}")]
-        public async Task<IActionResult> UpdateUserCocPlayerTag(string id, string tag)
+        [HttpPut("AddCocPlayerTag")]
+        public async Task<IActionResult> AddUserCocPlayerTag(string id, string tag)
         {
-            await _service.UpdateCocPlayerTag(id, tag);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
+            String urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{urltag}";
+            HttpResponseMessage response = await _client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+
+            await _service.AddCocPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpPut("UpdateCrTag/{id}")]
-        public async Task<IActionResult> UpdateUserCrPlayerTag(string id, string tag)
+        [HttpPut("AddCrPlayerTag")]
+        public async Task<IActionResult> AddUserCrPlayerTag(string id, string tag)
         {
-            await _service.UpdateCrPlayerTag(id, tag);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
+            String urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://proxy.royaleapi.dev/v1/players/%23{urltag}";
+            HttpResponseMessage response = await _client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+
+            await _service.AddCrPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpPut("UpdateBsTag/{id}")]
-        public async Task<IActionResult> UpdateUserBsPlayerTag(string id, string tag)
+        [HttpPut("AddBsPlayerTag")]
+        public async Task<IActionResult> AddUserBsPlayerTag(string id, string tag)
         {
-            await _service.UpdateBsPlayerTag(id, tag);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
+            String urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://bsproxy.royaleapi.dev/v1/players/%23{urltag}";
+            HttpResponseMessage response = await _client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+
+            await _service.AddBsPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpDelete("DeleteCocTag/{id}")]
-        public async Task<IActionResult> DeleteUserCocPlayerTag(string id)
+        
+        [HttpDelete("RemoveCocPlayerTag")]
+        public async Task<IActionResult> RemoveUserCocPlayerTag(string id, string tag)
         {
-            await _service.UpdateCocPlayerTag(id, null);
+            await _service.RemoveCocPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpDelete("DeleteCrTag/{id}")]
-        public async Task<IActionResult> DeleteUserCrPlayerTag(string id)
+        [HttpDelete("RemoveCrPlayerTag")]
+        public async Task<IActionResult> RemoveUserCrPlayerTag(string id, string tag)
         {
-            await _service.UpdateCrPlayerTag(id, null);
+            await _service.RemoveCrPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpDelete("DeleteBsTag/{id}")]
-        public async Task<IActionResult> DeleteUserBsPlayerTag(string id)
+        [HttpDelete("RemoveBsPlayerTag")]
+        public async Task<IActionResult> RemoveUserBsPlayerTag(string id, string tag)
         {
-            await _service.UpdateBsPlayerTag(id, null);
+            await _service.RemoveBsPlayerTag(id, tag);
             return NoContent();
         }
-
+        
     }
 }

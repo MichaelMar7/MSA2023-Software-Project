@@ -1,4 +1,5 @@
-﻿using Back_End.Contexts;
+﻿using Azure;
+using Back_End.Contexts;
 using Back_End.Models;
 
 using Microsoft.EntityFrameworkCore;
@@ -14,46 +15,96 @@ namespace Back_End.Services
             _users = users;
         }
 
-        public async Task<UserData> GetUserData(string id)
+        public async Task<User> GetUserData(string id)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             return user;
         }
 
-        public async Task UpdateCocPlayerTag(string id, string newTag)
+        public async Task<CocPlayerTag> GetCocPlayerTag(string id, string tag)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            CocPlayerTag playerTag = await _users.CocPlayerTags.SingleOrDefaultAsync(t => t.UserId == id && t.Tag == tag);
+            return playerTag;
+
+        }
+
+        public async Task<CrPlayerTag> GetCrPlayerTag(string id, string tag)
+        {
+            CrPlayerTag playerTag = await _users.CrPlayerTags.SingleOrDefaultAsync(t => t.UserId == id && t.Tag == tag);
+            return playerTag;
+        }
+
+        public async Task<BsPlayerTag> GetBsPlayerTag(string id, string tag)
+        {
+            BsPlayerTag playerTag = await _users.BsPlayerTags.SingleOrDefaultAsync(t => t.UserId == id && t.Tag == tag);
+            return playerTag;
+        }
+
+        public async Task AddCocPlayerTag(string id, string tag)
+        {
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             if (user != null)
             {
-                user.CocTag = newTag;
-                _users.UserDatas.Entry(user).State = EntityState.Modified;
+                CocPlayerTag newPlayerTag = new CocPlayerTag { Id = Guid.NewGuid().ToString(), Tag = tag, UserId = user.UserId };
+                await _users.CocPlayerTags.AddAsync(newPlayerTag);
                 await _users.SaveChangesAsync();
             }
             
         }
 
-        public async Task UpdateCrPlayerTag(string id, string newTag)
+        public async Task AddCrPlayerTag(string id, string tag)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             if (user != null)
             {
-                user.CrTag = newTag;
-                _users.UserDatas.Entry(user).State = EntityState.Modified;
+                CrPlayerTag newPlayerTag = new CrPlayerTag { Id = Guid.NewGuid().ToString(), Tag = tag, UserId = user.UserId };
+                await _users.CrPlayerTags.AddAsync(newPlayerTag);
                 await _users.SaveChangesAsync();
             }
         }
 
-        public async Task UpdateBsPlayerTag(string id, string newTag)
+        public async Task AddBsPlayerTag(string id, string tag)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             if (user != null)
             {
-                user.BsTag = newTag;
-                _users.UserDatas.Entry(user).State = EntityState.Modified;
+                BsPlayerTag newPlayerTag = new BsPlayerTag { Id = Guid.NewGuid().ToString(), Tag = tag, UserId = user.UserId };
+                await _users.BsPlayerTags.AddAsync(newPlayerTag);
                 await _users.SaveChangesAsync();
             }
         }
 
+        public async Task RemoveCocPlayerTag(string id, string tag)
+        {
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
+            if (user != null)
+            {
+                _users.CocPlayerTags.Remove(_users.CocPlayerTags.Single(t => t.UserId == id && t.Tag == tag)); 
+                await _users.SaveChangesAsync();
+            }
+
+        }
+
+        public async Task RemoveCrPlayerTag(string id, string tag)
+        {
+            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            if (user != null)
+            {
+                _users.CrPlayerTags.Remove(_users.CrPlayerTags.Single(t => t.UserId == id && t.Tag == tag));
+                await _users.SaveChangesAsync();
+            }
+        }
+
+        public async Task RemoveBsPlayerTag(string id, string tag)
+        {
+            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            if (user != null)
+            {
+                _users.BsPlayerTags.Remove(_users.BsPlayerTags.Single(t => t.UserId == id && t.Tag == tag));
+                await _users.SaveChangesAsync();
+            }
+        }
         
+
     }
 }

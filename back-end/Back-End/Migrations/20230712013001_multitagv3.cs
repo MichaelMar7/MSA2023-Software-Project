@@ -5,7 +5,7 @@
 namespace Back_End.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialMigration : Migration
+    public partial class multitagv3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

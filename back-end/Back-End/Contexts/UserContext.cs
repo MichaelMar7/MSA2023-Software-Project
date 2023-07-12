@@ -11,5 +11,8 @@ namespace Back_End.Contexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserData> UserDatas { get; set; }
+        public DbSet<CocPlayerTag> CocPlayerTags { get; set; }
+        public DbSet<CrPlayerTag> CrPlayerTags { get; set; }
+        public DbSet<BsPlayerTag> BsPlayerTags { get; set; }
     }
 }
