@@ -23,7 +23,7 @@ namespace Back_End.Controllers
             _service = service;
         }
         
-        [HttpGet("/GetCocPlayer")]
+        [HttpGet("/{id}/GetCocPlayer")]
         public async Task<CocPlayer> GetUserCocPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
@@ -48,7 +48,7 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpGet("/GetCrPlayer")]
+        [HttpGet("/{id}/GetCrPlayer")]
         public async Task<CrPlayer> GetUserCrPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
@@ -73,7 +73,7 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpGet("/GetBsPlayer")]
+        [HttpGet("/{id}/GetBsPlayer")]
         public async Task<BsPlayer> GetUserBsPlayer(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
@@ -98,7 +98,7 @@ namespace Back_End.Controllers
             }
         }
 
-        [HttpPut("AddCocPlayerTag")]
+        [HttpPut("/{id}/AddCocPlayerTag")]
         public async Task<IActionResult> AddUserCocPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
@@ -114,7 +114,7 @@ namespace Back_End.Controllers
             return NoContent();
         }
 
-        [HttpPut("AddCrPlayerTag")]
+        [HttpPut("/{id}/AddCrPlayerTag")]
         public async Task<IActionResult> AddUserCrPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
@@ -130,7 +130,7 @@ namespace Back_End.Controllers
             return NoContent();
         }
 
-        [HttpPut("AddBsPlayerTag")]
+        [HttpPut("/{id}/AddBsPlayerTag")]
         public async Task<IActionResult> AddUserBsPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
@@ -147,21 +147,21 @@ namespace Back_End.Controllers
         }
 
         
-        [HttpDelete("RemoveCocPlayerTag")]
+        [HttpDelete("/{id}/RemoveCocPlayerTag")]
         public async Task<IActionResult> RemoveUserCocPlayerTag(string id, string tag)
         {
             await _service.RemoveCocPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpDelete("RemoveCrPlayerTag")]
+        [HttpDelete("/{id}/RemoveCrPlayerTag")]
         public async Task<IActionResult> RemoveUserCrPlayerTag(string id, string tag)
         {
             await _service.RemoveCrPlayerTag(id, tag);
             return NoContent();
         }
 
-        [HttpDelete("RemoveBsPlayerTag")]
+        [HttpDelete("/{id}/RemoveBsPlayerTag")]
         public async Task<IActionResult> RemoveUserBsPlayerTag(string id, string tag)
         {
             await _service.RemoveBsPlayerTag(id, tag);
