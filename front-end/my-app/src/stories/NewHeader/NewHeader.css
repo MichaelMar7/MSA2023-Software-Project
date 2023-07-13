@@ -1,0 +1,31 @@
+h1 {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+}
+
+.newHeader {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    margin: 10px auto;
+    align-items: center;
+    background-color: #eee;
+}
+
+.newHeader .heading {
+    margin-left: 20%;
+    margin-right: auto;
+    vertical-align: center;
+}
+
+.newHeader .auth {
+    margin-left: auto;
+    margin-right: 15%;
+    vertical-align: center;
+}
+
+.welcome {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    margin: 2px 12px;
+}
