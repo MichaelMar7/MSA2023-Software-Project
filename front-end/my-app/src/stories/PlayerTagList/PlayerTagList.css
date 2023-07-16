@@ -1,0 +1,30 @@
+
+.player-tag-list {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    width: 200px;
+    margin: 12px;
+}
+
+.player-tag-list h3 {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+ul.list-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*
+.list-items li {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background: #ddd;
+    padding: 6px 0;
+    margin: 11px 0;
+    width: 200px;
+    border-radius: 1em;
+}
+*/

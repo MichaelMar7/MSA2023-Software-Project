@@ -1,6 +1,6 @@
 h1 {
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .newHeader {
@@ -13,7 +13,7 @@ h1 {
 }
 
 .newHeader .heading {
-    margin-left: 20%;
+    margin-left: 10%;
     margin-right: auto;
     vertical-align: center;
 }
@@ -24,8 +24,20 @@ h1 {
     vertical-align: center;
 }
 
+.newHeader .navlinks {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.newHeader .navlinks .navlink {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 6px 12px;
+    text-decoration: none;
+    color: #909;
+}
+
 .welcome {
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     margin: 2px 12px;
+    margin-left: 60px;
 }

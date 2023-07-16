@@ -17,6 +17,11 @@
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 0px 1px inset;
 }
 
+.button--xsmall {
+    font-size: 11px;
+    padding: 8px 14px;
+}
+
 .button--small {
     font-size: 12px;
     padding: 12px 18px;

@@ -4,8 +4,9 @@ import './NewButton.css';
 interface NewButtonProps {
     primary?: boolean;
     backgroundColor?: string;
-    size?: "small" | "medium" | "large";
+    size?: "xsmall" | "small" | "medium" | "large";
     label: string;
+    width?: string;
     onClick?: () => void;
 }
 
@@ -17,6 +18,7 @@ export const NewButton = ({
   size = "medium",
   backgroundColor,
   label,
+  width,
   ...props
 }: NewButtonProps) => {
   const mode = primary ? "button--primary" : "button--secondary";
@@ -24,7 +26,7 @@ export const NewButton = ({
     <button
       type="button"
       className={["button", `button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      style={{ backgroundColor, width }}
       {...props}
     >
       {label}
