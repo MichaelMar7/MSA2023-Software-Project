@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User } from "../models/User";
 
 export const api = createApi({
     reducerPath: "api",
@@ -23,57 +22,75 @@ export const api = createApi({
                 method: "GET",
             }),
         }),
+        getAllCocPlayer: builder.query({
+            query: (id) => ({
+                url: `${encodeURIComponent(id)}/GetCocPlayers`,
+                method: "GET",
+            }),
+        }),
+        getAllCrPlayer: builder.query({
+            query: (id) => ({
+                url: `${encodeURIComponent(id)}/GetCrPlayers`,
+                method: "GET",
+            }),
+        }),
+        getAllBsPlayer: builder.query({
+            query: (id) => ({
+                url: `${encodeURIComponent(id)}/GetBsPlayers`,
+                method: "GET",
+            }),
+        }),
         getCocPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetCocPlayer?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetCocPlayer/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
         getCrPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetCrPlayer?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetCrPlayer/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
         getBsPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetBsPlayer?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetBsPlayer/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
         addCocPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddCocPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/AddCocPlayerTag/${encodeURIComponent(tag)}`,
                 method: "PUT",
             }),
         }),
         addCrPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddCrPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/AddCrPlayerTag/${encodeURIComponent(tag)}`,
                 method: "PUT",
             }),
         }),
         addBsPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddBsPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/AddBsPlayerTag/${encodeURIComponent(tag)}`,
                 method: "PUT",
             }),
         }),
         removeCocPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/RemoveCocPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/RemoveCocPlayerTag/${encodeURIComponent(tag)}`,
                 method: "DELETE",
             }),
         }),
         removeCrPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/RemoveCrPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/RemoveCrPlayerTag/${encodeURIComponent(tag)}`,
                 method: "DELETE",
             }),
         }),
         removeBsPlayerTag: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/RemoveBsPlayerTag?tag=${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/RemoveBsPlayerTag/${encodeURIComponent(tag)}`,
                 method: "DELETE",
             }),
         }),
