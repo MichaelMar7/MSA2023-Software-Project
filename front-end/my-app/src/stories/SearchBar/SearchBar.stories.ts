@@ -10,10 +10,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof SearchBar>;
 
-export const Default: Story = {};
+export const Default: Story = {
+};
+
+export const Text: Story = {
+    args: {
+        text: "Input player tag...",
+    }
+};
 
 export const SmallButton: Story = {
     args: {
+        text: "Input player tag...",
         buttonSize: "small",
-      },
+    },
 };
