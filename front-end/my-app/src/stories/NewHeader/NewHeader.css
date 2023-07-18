@@ -1,6 +1,6 @@
 h1 {
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .newHeader {
@@ -20,19 +20,8 @@ h1 {
 
 .newHeader .auth {
     margin-left: auto;
-    margin-right: 15%;
+    margin-right: 10%;
     vertical-align: center;
-}
-
-.newHeader .navlinks {
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.newHeader .navlinks .navlink {
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 6px 12px;
-    text-decoration: none;
-    color: #909;
 }
 
 .welcome {
@@ -41,3 +30,40 @@ h1 {
     margin: 2px 12px;
     margin-left: 60px;
 }
+
+.navlinks {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.navlinks .navlink {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 6px 12px;
+    text-decoration: none;
+    color: #909;
+}
+
+@media screen and (max-width: 1280px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .newHeader .heading {
+        margin-left: 5%;
+    }
+    
+    .newHeader .auth {
+        margin-right: 5%;
+    }
+
+    .welcome {
+        font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        margin: 2px 12px;
+        margin-left: 30px;
+    }
+
+    .navlinks .navlink {
+        margin: 6px 8px;
+    }
+}
+
