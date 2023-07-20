@@ -3,7 +3,11 @@ using Back_End.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+
 
 namespace Back_End.Controllers
 {
@@ -120,7 +124,7 @@ namespace Back_End.Controllers
         public async Task<IActionResult> AddUserCocPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
-            String urltag = tag.Substring(1, tag.Length - 1);
+            string urltag = tag.Substring(1, tag.Length - 1);
             string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{urltag}";
             HttpResponseMessage response = await _client.GetAsync(url);
             if (!response.IsSuccessStatusCode)
@@ -136,7 +140,7 @@ namespace Back_End.Controllers
         public async Task<IActionResult> AddUserCrPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
-            String urltag = tag.Substring(1, tag.Length - 1);
+            string urltag = tag.Substring(1, tag.Length - 1);
             string url = $"https://proxy.royaleapi.dev/v1/players/%23{urltag}";
             HttpResponseMessage response = await _client.GetAsync(url);
             if (!response.IsSuccessStatusCode)
@@ -152,7 +156,7 @@ namespace Back_End.Controllers
         public async Task<IActionResult> AddUserBsPlayerTag(string id, string tag)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
-            String urltag = tag.Substring(1, tag.Length - 1);
+            string urltag = tag.Substring(1, tag.Length - 1);
             string url = $"https://bsproxy.royaleapi.dev/v1/players/%23{urltag}";
             HttpResponseMessage response = await _client.GetAsync(url);
             if (!response.IsSuccessStatusCode)
@@ -164,7 +168,118 @@ namespace Back_End.Controllers
             return NoContent();
         }
 
-        
+        [HttpPut("/{id}/AddCocPlayerTag2/{tag}")]
+        public async Task<IActionResult> AddUserCocPlayerTag2(string id, string tag, string token)
+        {
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", COC_API_KEY);
+
+            string urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{urltag}";
+            string verifyurl = $"https://cocproxy.royaleapi.dev/v1/players/%23{urltag}/verifytoken";
+
+            var body = new RequestBody { token = token };
+            var bodystring = JsonSerializer.Serialize(body);
+            var bodycontent = new StringContent(bodystring, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.GetAsync(url);
+            HttpResponseMessage verifyresponse = await _client.PostAsync(verifyurl, bodycontent);
+
+            ResponseBody respnosebody = null;
+            bool verify = false;
+            if (verifyresponse.IsSuccessStatusCode)
+            {
+                respnosebody = await verifyresponse.Content.ReadAsAsync<ResponseBody>();
+                verify = respnosebody.status == "ok";
+            }
+            else
+            {
+                throw new Exception(verifyresponse.ReasonPhrase);
+            }
+            
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
+            if (!verify)
+                throw new Exception("Token is invalid");
+
+            await _service.AddCocPlayerTag(id, tag);
+            return NoContent();
+        }
+
+        [HttpPut("/{id}/AddCrPlayerTag2/{tag}")]
+        public async Task<IActionResult> AddUserCrPlayerTag2(string id, string tag, string token)
+        {
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", CR_API_KEY);
+
+            string urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://proxy.royaleapi.dev/v1/players/%23{urltag}";
+            string verifyurl = $"https://proxy.royaleapi.dev/v1/players/%23{urltag}/verifytoken";
+
+            var body = new RequestBody { token = token };
+            var bodystring = JsonSerializer.Serialize(body);
+            var bodycontent = new StringContent(bodystring, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.GetAsync(url);
+            HttpResponseMessage verifyresponse = await _client.PostAsync(verifyurl, bodycontent);
+
+            ResponseBody respnosebody = null;
+            bool verify = false;
+            if (verifyresponse.IsSuccessStatusCode)
+            {
+                respnosebody = await verifyresponse.Content.ReadAsAsync<ResponseBody>();
+                verify = respnosebody.status == "ok";
+            }
+            else
+            {
+                throw new Exception(verifyresponse.ReasonPhrase);
+            }
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
+            if (!verify)
+                throw new Exception("Token is invalid");
+
+            await _service.AddCrPlayerTag(id, tag);
+            return NoContent();
+        }
+
+        [HttpPut("/{id}/AddBsPlayerTag2/{tag}")]
+        public async Task<IActionResult> AddUserBsPlayerTag2(string id, string tag, string token)
+        {
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", BS_API_KEY);
+
+            string urltag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{urltag}";
+            string verifyurl = $"https://bsproxy.royaleapi.dev/v1/players/%23{urltag}/verifytoken";
+
+            var body = new RequestBody { token = token };
+            var bodystring = JsonSerializer.Serialize(body);
+            var bodycontent = new StringContent(bodystring, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.GetAsync(url);
+            HttpResponseMessage verifyresponse = await _client.PostAsync(verifyurl, bodycontent);
+
+            ResponseBody respnosebody = null;
+            bool verify = false;
+            if (verifyresponse.IsSuccessStatusCode)
+            {
+                respnosebody = await verifyresponse.Content.ReadAsAsync<ResponseBody>();
+                verify = respnosebody.status == "ok";
+            }
+            else
+            {
+                throw new Exception(verifyresponse.ReasonPhrase);
+            }
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
+            if (!verify)
+                throw new Exception("Token is invalid");
+
+            await _service.AddBsPlayerTag(id, tag);
+            return NoContent();
+        }
+
+
         [HttpDelete("/{id}/RemoveCocPlayerTag/{tag}")]
         public async Task<IActionResult> RemoveUserCocPlayerTag(string id, string tag)
         {
@@ -185,6 +300,9 @@ namespace Back_End.Controllers
             await _service.RemoveBsPlayerTag(id, tag);
             return NoContent();
         }
+
+        
+        
         
     }
 }

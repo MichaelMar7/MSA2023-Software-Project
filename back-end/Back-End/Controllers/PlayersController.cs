@@ -3,6 +3,8 @@
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text;
 
 namespace Back_End.Controllers
 {
@@ -80,6 +82,33 @@ namespace Back_End.Controllers
             {
                 player = await response.Content.ReadAsAsync<BsPlayer>();
                 return player!;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
+        [HttpPost("/CocPlayer/{tag}/verify")]
+        public async Task<ResponseBody> GetCocPlayerVerify(string tag, string token)
+        {
+            const string API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImFhY2EyYTMzLTMwMWUtNDg1YS05ZWI0LWQ1ZTAyNWUzYzZkOCIsImlhdCI6MTY4ODI2Mzg0NSwic3ViIjoiZGV2ZWxvcGVyL2YwNDY0M2VlLTkyMTEtYTUyMi00ODkwLTUwYjZkNDc3M2I3MSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQ1Ljc5LjIxOC43OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.D-kutC64vNdxtSOBYcLj0FOk06iSvSEYTZGzjO34nPYL_cC82jGH3FUPrM4e4Jl-57mFu578ucw3-g4--EgSYQ";
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", API_KEY);
+
+            ResponseBody respnosebody = null;
+            tag = tag.Substring(1, tag.Length - 1);
+            string url = $"https://cocproxy.royaleapi.dev/v1/players/%23{tag}/verifytoken";
+
+            var body = new RequestBody { token = token };
+            var bodystring = JsonSerializer.Serialize(body);
+            var bodyContent = new StringContent(bodystring, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _client.PostAsync(url, bodyContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                respnosebody = await response.Content.ReadAsAsync<ResponseBody>();
+                return respnosebody!;
             }
             else
             {
