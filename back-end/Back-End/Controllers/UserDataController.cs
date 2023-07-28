@@ -3,6 +3,7 @@ using Back_End.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using System;
 using System.Net.Http.Headers;
 using System.Text;

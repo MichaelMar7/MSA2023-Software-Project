@@ -24,7 +24,8 @@ namespace Back_End.Services
 
         public async Task<User> Register(string username, string password)
         {
-            if (_users.Users.Single(u => u.Username == username) == null)
+            User check = await _users.Users.SingleOrDefaultAsync(u => u.Username == username);
+            if (check == null)
             {
                 User user = new User { UserId = Guid.NewGuid().ToString(), Username = username, Password = password };
                 //UserData userdata = new UserData { UserDataId = Guid.NewGuid().ToString(), UserId = user.UserId };
@@ -33,7 +34,7 @@ namespace Back_End.Services
                 await _users.SaveChangesAsync();
                 return user;
             }
-            return null;
+            throw new Exception("Username already in use.");
         }
     }
 }

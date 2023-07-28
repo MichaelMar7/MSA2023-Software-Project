@@ -27,8 +27,8 @@ namespace Back_End.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("/Authenticate")]
-        public async Task<ActionResult<string>> Authenticate(string username, string password)
+        [HttpPost("/Login")]
+        public async Task<ActionResult<object>> Login(string username, string password)
         {
             var user = await _service.Authenticate(username, password);
 
@@ -39,7 +39,8 @@ namespace Back_End.Controllers
 
             authuser = user;
             string token = CreateToken(user);
-            return Ok(token);
+            //return Ok(token);
+            return Ok(new { User = user, Token = token });  
         }
 
         [HttpPost("/Register")]
