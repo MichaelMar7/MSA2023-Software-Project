@@ -11,9 +11,9 @@ export default meta;
 type Story = StoryObj<typeof NewHeader>;
 
 const testuser = {
-    UserId: "1",
-    Username: "test",
-    Password: "test",
+    userId: "1",
+    username: "test",
+    password: "test",
 };
 
 export const LoggedIn: Story = {

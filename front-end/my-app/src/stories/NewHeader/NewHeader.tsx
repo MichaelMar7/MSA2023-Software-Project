@@ -28,7 +28,7 @@ export const NewHeader = ({user, onLogin, onLogout, onRegister, navLinks = []}: 
                             ))}
                         </span>
                         <span className="welcome">
-                            Welcome, <b>{user.Username}</b>!
+                            Welcome, <b>{user.username}</b>!
                         </span>
                         <NewButton label="Log Out" onClick={onLogout} />
                     </div>

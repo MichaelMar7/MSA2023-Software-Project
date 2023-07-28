@@ -14,22 +14,22 @@ interface NewButtonProps {
  * Primary UI component for user interaction
  */
 export const NewButton = ({
-  primary = false,
-  size = "medium",
-  backgroundColor,
-  label,
-  width,
-  ...props
+    primary = false,
+    size = "medium",
+    backgroundColor,
+    label,
+    width,
+    ...props
 }: NewButtonProps) => {
-  const mode = primary ? "button--primary" : "button--secondary";
-  return (
-    <button
-      type="button"
-      className={["button", `button--${size}`, mode].join(' ')}
-      style={{ backgroundColor, width }}
-      {...props}
-    >
-      {label}
-    </button>
-  );
+    const mode = primary ? "button--primary" : "button--secondary";
+    return (
+        <button
+            type="button"
+            className={["button", `button--${size}`, mode].join(' ')}
+            style={{ backgroundColor, width }}
+            {...props}
+        >
+            {label}
+        </button>
+    );
 };

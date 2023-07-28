@@ -12,19 +12,19 @@ type Story = StoryObj<typeof PlayerTagList>;
 
 const tags = [
     {
-        Id: "1",
-        UserId: "1",
-        Tag: "#abc123def",
+        id: "1",
+        userId: "1",
+        tag: "#abc123def",
     },
     {
-        Id: "2",
-        UserId: "2",
-        Tag: "#abd",
+        id: "2",
+        userId: "2",
+        tag: "#abd",
     },
     {
-        Id: "3",
-        UserId: "2",
-        Tag: "#abe",
+        id: "3",
+        userId: "2",
+        tag: "#abe",
     },
 ];
 
