@@ -4,6 +4,18 @@ export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: "https://localhost:7008/" }),
     endpoints: (builder) => ({
+        login : builder.query({
+            query: ({username, password}) => ({
+                url: `Login?username=${username}&password${password}`,
+                method: "POST",
+            })
+        }),
+        register : builder.query({
+            query: ({username, password}) => ({
+                url: `Register?username=${username}&password${password}`,
+                method: "POST",
+            })
+        }),
         cocPlayer: builder.query({
             query: (tag) => ({
                 url: `CocPlayer/${encodeURIComponent(tag)}`,
@@ -22,19 +34,19 @@ export const api = createApi({
                 method: "GET",
             }),
         }),
-        getAllCocPlayer: builder.query({
+        getAllCocPlayers: builder.query({
             query: (id) => ({
                 url: `${encodeURIComponent(id)}/GetCocPlayers`,
                 method: "GET",
             }),
         }),
-        getAllCrPlayer: builder.query({
+        getAllCrPlayers: builder.query({
             query: (id) => ({
                 url: `${encodeURIComponent(id)}/GetCrPlayers`,
                 method: "GET",
             }),
         }),
-        getAllBsPlayer: builder.query({
+        getAllBsPlayers: builder.query({
             query: (id) => ({
                 url: `${encodeURIComponent(id)}/GetBsPlayers`,
                 method: "GET",
@@ -42,19 +54,19 @@ export const api = createApi({
         }),
         getCocPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetCocPlayer/${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetCocPlayers/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
         getCrPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetCrPlayer/${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetCrPlayers/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
         getBsPlayer: builder.query({
             query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/GetBsPlayer/${encodeURIComponent(tag)}`,
+                url: `${encodeURIComponent(id)}/GetBsPlayers/${encodeURIComponent(tag)}`,
                 method: "GET",
             }),
         }),
@@ -73,6 +85,24 @@ export const api = createApi({
         addBsPlayerTag: builder.query({
             query: ({id, tag}) => ({
                 url: `${encodeURIComponent(id)}/AddBsPlayerTag/${encodeURIComponent(tag)}`,
+                method: "PUT",
+            }),
+        }),
+        addCocPlayerTag2: builder.query({
+            query: ({id, tag, token}) => ({
+                url: `${encodeURIComponent(id)}/AddCocPlayerTag2/${encodeURIComponent(tag)}?token=${encodeURIComponent(token)}`,
+                method: "PUT",
+            }),
+        }),
+        addCrPlayerTag2: builder.query({
+            query: ({id, tag, token}) => ({
+                url: `${encodeURIComponent(id)}/AddCrPlayerTag2/${encodeURIComponent(tag)}?token=${encodeURIComponent(token)}`,
+                method: "PUT",
+            }),
+        }),
+        addBsPlayerTag2: builder.query({
+            query: ({id, tag, token}) => ({
+                url: `${encodeURIComponent(id)}/AddBsPlayerTag2/${encodeURIComponent(tag)}?token=${encodeURIComponent(token)}`,
                 method: "PUT",
             }),
         }),
@@ -97,7 +127,9 @@ export const api = createApi({
     }),
 });
 
-export const { useCocPlayerQuery, useCrPlayerQuery, useBsPlayerQuery,
+export const { useLoginQuery, useRegisterQuery, useCocPlayerQuery, useCrPlayerQuery, useBsPlayerQuery,
+    useGetAllCocPlayersQuery, useGetAllCrPlayersQuery, useGetAllBsPlayersQuery,  
     useGetCocPlayerQuery, useGetCrPlayerQuery, useGetBsPlayerQuery,  
     useAddCocPlayerTagQuery, useAddCrPlayerTagQuery, useAddBsPlayerTagQuery, 
+    useAddCocPlayerTag2Query, useAddCrPlayerTag2Query, useAddBsPlayerTag2Query, 
     useRemoveCocPlayerTagQuery, useRemoveCrPlayerTagQuery, useRemoveBsPlayerTagQuery } = api;
