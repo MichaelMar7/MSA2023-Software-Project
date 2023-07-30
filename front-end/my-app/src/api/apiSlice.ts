@@ -124,6 +124,12 @@ export const api = createApi({
                 method: "DELETE",
             }),
         }),
+        getBsBrawlerInfo: builder.query({
+            query: (id) => ({
+                url: `https://api.brawlapi.com/v1/brawlers/${encodeURIComponent(id)}`,
+                method: "GET"
+            })
+        }),
     }),
 });
 
@@ -132,4 +138,4 @@ export const { useLoginQuery, useRegisterQuery, useCocPlayerQuery, useCrPlayerQu
     useGetCocPlayerQuery, useGetCrPlayerQuery, useGetBsPlayerQuery,  
     useAddCocPlayerTagQuery, useAddCrPlayerTagQuery, useAddBsPlayerTagQuery, 
     useAddCocPlayerTag2Query, useAddCrPlayerTag2Query, useAddBsPlayerTag2Query, 
-    useRemoveCocPlayerTagQuery, useRemoveCrPlayerTagQuery, useRemoveBsPlayerTagQuery } = api;
+    useRemoveCocPlayerTagQuery, useRemoveCrPlayerTagQuery, useRemoveBsPlayerTagQuery, useGetBsBrawlerInfoQuery } = api;

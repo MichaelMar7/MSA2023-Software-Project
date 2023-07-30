@@ -1,0 +1,57 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);;
+    margin: 10px;
+    width: 200px;
+}
+
+.grid-container-max {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: gold;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);;
+    margin: 10px;
+    width: 200px;
+}
+
+.card-grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.grid-container > div {
+    text-align: center;
+}
+
+.grid-container-max > div {
+    text-align: center;
+}
+
+.item {
+    padding: 6px 0 6px 6px;
+}
+
+.item-image {
+    grid-area: 1 / 2 / 3 / 3;
+    padding: 6px;
+}
+
+.item-header {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.item-subheader {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+
+.legend-card {
+    width:"200px";
+    background-color: #111;
+}
+
+.legend-card-bgc {
+    background-color: #ddd;
+}

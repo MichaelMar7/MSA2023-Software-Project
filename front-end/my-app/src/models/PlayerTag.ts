@@ -1,5 +1,5 @@
 export interface PlayerTag {
-    Id: string,
-    UserId: string,
-    Tag: string,
+    id: string,
+    userId: string,
+    tag: string,
 }

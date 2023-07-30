@@ -1,0 +1,30 @@
+.bs-grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);;
+    margin: 10px;
+    width: 300px;
+}
+
+.bs-grid-container-max {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: gold;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);;
+    margin: 10px;
+    width: 300px;
+}
+
+.bs-card-grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.bs-grid-container > div {
+    text-align: center;
+}
+
+.bs-grid-container-max > div {
+    text-align: center;
+}
+

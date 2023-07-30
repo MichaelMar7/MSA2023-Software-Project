@@ -1,7 +1,7 @@
 export interface User {
-    UserId: string,
-    Username: string,
-    Password: string
+    userId: string,
+    username: string,
+    password: string
 };
 
 //export type { User };
