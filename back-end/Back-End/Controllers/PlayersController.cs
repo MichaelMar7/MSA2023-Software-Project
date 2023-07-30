@@ -34,6 +34,7 @@ namespace Back_End.Controllers
             if (response.IsSuccessStatusCode)
             {
                 player = await response.Content.ReadAsAsync<CocPlayer>();
+                player.ItemSort();
                 return player!;
             }
             else
