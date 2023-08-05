@@ -73,7 +73,7 @@ export const ItemCard = (item: any) => {
     var brawlername = getBrawlername(item.name)
 
     let starPowersArray = item.starPowers.map((sp:any) => sp.id);
-    console.log(brawlerInfo)
+    //console.log(brawlerInfo)
     
     return (
         <div>

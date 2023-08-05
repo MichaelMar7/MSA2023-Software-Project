@@ -67,3 +67,20 @@ h1 {
     }
 }
 
+@media screen and (max-width: 900px) {
+    h1 {
+        text-align:center;
+    }
+
+    .newHeader {
+        display: inline;
+        background-color: #eee;
+    }
+
+    .newHeader .auth {
+        display:block;
+        margin-left: 5%;
+        margin-right: auto;
+    }
+}
+

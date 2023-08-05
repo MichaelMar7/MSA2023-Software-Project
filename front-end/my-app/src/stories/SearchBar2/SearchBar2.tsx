@@ -4,17 +4,20 @@ import { NewButton } from "../NewButton/NewButton";
 import "../SearchBar/SearchBar.css";
 
 export interface SearchBar2Props {
-    buttonSize: "xsmall" | "small" | "medium" | "large";
+    text1?: string;
+    text2?: string;
+    label?: string
+    buttonSize?: "xsmall" | "small" | "medium" | "large";
     onSearch?: () => void;
 };
 
-export const SearchBar2 = ({buttonSize = "xsmall", onSearch}: SearchBar2Props) => {
+export const SearchBar2 = ({text1, text2, label = "Label", buttonSize = "xsmall", onSearch}: SearchBar2Props) => {
     return (
         <div className="search-container">
             <form>
-                <input type="text" placeholder="Input player tag..." name="search" id="search" />
-                <input type="text" placeholder="Input API token..." name="search" id="search" />
-                <NewButton label="Search" size={buttonSize} onClick={onSearch} primary />
+                <input type="text" placeholder={text1} name="search" id="search" /><br />
+                <input type="password" placeholder={text2} name="search" id="search" />
+                <NewButton label={label} size={buttonSize} onClick={onSearch} primary />
             </form>
         </div>
     )

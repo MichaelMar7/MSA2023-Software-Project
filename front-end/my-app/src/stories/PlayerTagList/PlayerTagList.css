@@ -3,7 +3,7 @@
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: center;
     width: 200px;
-    margin: 12px;
+    margin: 30px;
 }
 
 .player-tag-list h3 {
@@ -16,6 +16,7 @@ ul.list-items {
     padding: 0;
     margin: 0;
 }
+
 
 /*
 .list-items li {

@@ -12,6 +12,14 @@ type Story = StoryObj<typeof SearchBar2>;
 
 export const Default: Story = {};
 
+export const UserCredential: Story = {
+    args: {
+        text1: "Username",
+        text2: "Password",
+        label: "Login",
+      },
+};
+
 export const SmallButton: Story = {
     args: {
         buttonSize: "small",

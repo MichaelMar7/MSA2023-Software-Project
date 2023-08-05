@@ -1,11 +1,6 @@
 import {useParams} from "react-router-dom";
 
-import { useLoginQuery, useRegisterQuery, useCocPlayerQuery, useCrPlayerQuery, useBsPlayerQuery,
-    useGetCocPlayerQuery, useGetCrPlayerQuery, useGetBsPlayerQuery,  
-    useGetAllCocPlayersQuery, useGetAllCrPlayersQuery, useGetAllBsPlayersQuery,  
-    useAddCocPlayerTagQuery, useAddCrPlayerTagQuery, useAddBsPlayerTagQuery, 
-    useAddCocPlayerTag2Query, useAddCrPlayerTag2Query, useAddBsPlayerTag2Query, 
-    useRemoveCocPlayerTagQuery, useRemoveCrPlayerTagQuery, useRemoveBsPlayerTagQuery } from "../api/apiSlice"
+import { useCocPlayerQuery, useCrPlayerQuery, useBsPlayerQuery } from "../api/apiSlice"
 import CocPlayer from "./CocPlayer";
 
 export default function Player ({type}: {type: number}) { 

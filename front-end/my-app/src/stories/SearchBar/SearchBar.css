@@ -5,3 +5,11 @@
     cursor: pointer;
     align-items: center;
 }
+
+.search-container input[type=password] {
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    align-items: center;
+}

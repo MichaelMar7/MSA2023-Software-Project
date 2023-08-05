@@ -5,13 +5,14 @@ import "./SearchBar.css";
 
 export interface SearchBarProps {
     text?: string;
+    label?: string;
     buttonSize?: "xsmall" | "small" | "medium" | "large";
     onChange?: () => void;
     value?: string;
     onSearch?: () => void;
 };
 
-export const SearchBar = ({text, buttonSize = "xsmall", onChange, value, onSearch}: SearchBarProps) => {
+export const SearchBar = ({text, label = "Label", buttonSize = "xsmall", onChange, value, onSearch}: SearchBarProps) => {
     return (
         <div className="search-container">
             <form>
