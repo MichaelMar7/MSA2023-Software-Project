@@ -3,6 +3,7 @@ using Back_End.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.ConstrainedExecution;
 
 namespace Back_End.Services
 {
@@ -35,6 +36,12 @@ namespace Back_End.Services
                 return user;
             }
             throw new Exception("Username already in use.");
+        }
+
+        public async Task<User> GetUserById(string id)
+        {
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
+            return user;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0M6Ni4a2rMZyPyyLUbKjMWHI7BqwMsJPZgVyhb54zsoHsAd8WC3bFWUpagcuoXBPd9Rkg7OKdqRqdWNLqsEc8w==",
+  "dgSpecHash": "6DnROOtQy04DfHRroaVlnev1LeOBraBEhOJWmqjlXY+8VGezdadC6x/Q3VlqbXS3UBOO8shzC7aZpe4zbdruPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\micha\\MSA2023Folders\\MSA2023-Software-Project\\MSA2023-Software-Project\\back-end\\Back-End\\Back-End.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\micha\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
+    "C:\\Users\\micha\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.9\\microsoft.aspnetcore.authentication.jwtbearer.7.0.9.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.8\\microsoft.aspnetcore.openapi.7.0.8.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

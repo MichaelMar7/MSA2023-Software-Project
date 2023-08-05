@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace Back_End.Controllers
 {
@@ -28,9 +29,9 @@ namespace Back_End.Controllers
         }
 
         [HttpPost("/Login")]
-        public async Task<ActionResult<object>> Login(string username, string password)
+        public async Task<ActionResult<object>> Login(UserCred usercred)
         {
-            var user = await _service.Authenticate(username, password);
+            var user = await _service.Authenticate(usercred.Username, usercred.Password);
 
             if (user == null)
             {
@@ -39,14 +40,23 @@ namespace Back_End.Controllers
 
             authuser = user;
             string token = CreateToken(user);
-            //return Ok(token);
+            
+            Response.Cookies.Append("jwt", token, new CookieOptions { 
+                HttpOnly = true, 
+                IsEssential = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Domain = "localhost", 
+                Expires = DateTime.Now.AddDays(1) ,
+            });
+
             return Ok(new { User = user, Token = token });  
         }
 
         [HttpPost("/Register")]
-        public async Task<ActionResult<User>> Register(string username, string password)
+        public async Task<ActionResult<User>> Register(UserCred usercred /*string username, string password*/)
         {
-            var user = await _service.Register(username, password);
+            var user = await _service.Register(usercred.Username, usercred.Password);
 
             if (user == null)
             {
@@ -55,15 +65,32 @@ namespace Back_End.Controllers
             return Ok(user);
         }
 
-        /*
-        [HttpPost("/Logout/")]
+        
+        [HttpPost("/Logout")]
         public async Task<ActionResult<User>> Logout()
         {
-            authuser = null;
-            token = null;
-            return Ok();
+            Response.Cookies.Delete("jwt");
+            return Ok("logout");
         }
-        */
+        
+
+        [HttpGet("/User")]
+        public async Task<IActionResult> User()
+        { 
+            try
+            {
+                
+                var jwt = Request.Cookies["jwt"];
+                var token = Verify(jwt);
+                string userId = token.Issuer;
+                var user = await _service.GetUserById(userId);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
 
         private string CreateToken(User user)
         {
@@ -76,6 +103,7 @@ namespace Back_End.Controllers
 
             token = new JwtSecurityToken(
                 claims: claims,
+                issuer: user.UserId,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds);
 
@@ -83,5 +111,21 @@ namespace Back_End.Controllers
 
             return jwt;
         }
+
+        private JwtSecurityToken Verify(string token) 
+        { 
+            var tokenhandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Token").Value);
+            tokenhandler.ValidateToken(token, new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = false,
+                ValidateAudience = false
+            }, out SecurityToken validatedToken);
+
+            return (JwtSecurityToken)validatedToken;
+        }
+
     }
 }
