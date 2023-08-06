@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {useParams, useNavigate} from "react-router-dom";
 
-import { useBsPlayerQuery, useGetAllBsPlayersQuery, useAddBsPlayerTag2Mutation } from "../api/apiSlice"
+import { useBsPlayerQuery, useGetAllBsPlayersQuery, useAddBsPlayerTagMutation } from "../api/apiSlice"
 
 import { User } from '../models/User';
 import { PlayerTag } from "../models/PlayerTag";
@@ -14,10 +14,11 @@ import { PlayerTagToken } from '../models/PlayerTagToken';
 export default function BsPlayer ({user} : {user: User | undefined}) { 
     let { tag } = useParams();
     const [token, setToken] = useState("");
+    const [addAttempt, setAddAttempt] = useState(false);
 
-    const { data : bsplayer } = useBsPlayerQuery(tag);
-    const { data : crctags } = useGetAllBsPlayersQuery(user?.userId);
-    const [addBsPlayerTag2] = useAddBsPlayerTag2Mutation();
+    const { data : bsplayer, isLoading } = useBsPlayerQuery(tag);
+    const { data : bstags } = useGetAllBsPlayersQuery(user?.userId);
+    const [addBsPlayerTag] = useAddBsPlayerTagMutation();
 
     let navigate = useNavigate();
     var userId : string = user?.userId!
@@ -30,31 +31,32 @@ export default function BsPlayer ({user} : {user: User | undefined}) {
     function handleSubmit() {
         var playerTag: PlayerTagToken = {userId, tag: tag2, token}
         //console.log({userId, tag, token})
-        console.log(addBsPlayerTag2(playerTag));
+        addBsPlayerTag(playerTag);
         window.location.reload();
     };
 
     //console.log(bsplayer);
-    if (bsplayer === undefined) return (<div>Error</div>)
-
+    if (bsplayer === undefined) return (<div>{isLoading ? <p>Loading</p> : <p>No player is found.</p>}</div>)
     return (
         <div>
             <span style={{display:"flex",}}>
-            { user ?
-                <div>
-                    <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
-                    {(crctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
-                    <div className="search-container">
-                        <form>
-                            <input type="text" placeholder={"Enter Cr Player Token"} name="token" id="token" onChange={handleChange} value={token} />
-                            <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
-                        </form>
+                <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
+                { user ?
+                    <div>
+                        {(bstags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
+                            <div className="search-container">
+                                <NewButton label="Add Player" size={"xsmall"} onClick={() => handleSubmit()} primary />
+                                {addAttempt ? <p>Add tag failed. Wrong or expired API Token</p> : <p></p>}
+                            </div>
+                            : <div>
+                                <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")}/>
+                                {addAttempt ? <p>Success!</p> : <p></p>}
+                            </div>
+                        }
                     </div>
-                    : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")} /> }
-                </div>
-                :
-                <div></div>
-            }
+                    :
+                    <div></div>
+                }
                 
             </span>
                 <BsPlayerCard player={bsplayer} />

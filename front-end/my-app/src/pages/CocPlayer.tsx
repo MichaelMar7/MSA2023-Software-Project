@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useParams, useNavigate} from "react-router-dom";
 
-import { useCocPlayerQuery, useGetAllCocPlayersQuery, useAddCocPlayerTag2Mutation, useRemoveCocPlayerTagMutation } from "../api/apiSlice"
+import { useCocPlayerQuery, useGetAllCocPlayersQuery, useAddCocPlayerTagMutation, useRemoveCocPlayerTagMutation } from "../api/apiSlice"
 
 import { User } from '../models/User';
 import { NewButton } from "../stories/NewButton/NewButton";
@@ -13,11 +13,11 @@ import { PlayerTagToken } from '../models/PlayerTagToken';
 export default function CocPlayer ({user} : {user: User | undefined}) { 
     let { tag } = useParams();
     const [token, setToken] = useState("");
+    const [addAttempt, setAddAttempt] = useState(false);
 
-    const { data : cocplayer } = useCocPlayerQuery(tag);
+    const { data : cocplayer, isLoading } = useCocPlayerQuery(tag);
     const { data : coctags } = useGetAllCocPlayersQuery(user?.userId);
-    const [removeCocPlayer] = useRemoveCocPlayerTagMutation();
-    const [addCocPlayerTag2] = useAddCocPlayerTag2Mutation();
+    const [addCocPlayerTag] = useAddCocPlayerTagMutation();
 
     let navigate = useNavigate();
 
@@ -31,7 +31,8 @@ export default function CocPlayer ({user} : {user: User | undefined}) {
     function handleSubmit() {
         var playerTag: PlayerTagToken = {userId, tag: tag2, token}
         //console.log({userId, tag, token})
-        console.log(addCocPlayerTag2(playerTag));
+        addCocPlayerTag(playerTag);
+        setAddAttempt(true);
         window.location.reload();
     };
 
@@ -47,7 +48,7 @@ export default function CocPlayer ({user} : {user: User | undefined}) {
     */
 
     
-    if (cocplayer === undefined) return (<div>Error</div>)
+    if (cocplayer === undefined) return (<div>{isLoading ? <p>Loading</p> : <p>No player is found.</p>}</div>)
     return (
         <div>
             <span style={{display:"flex",}}>
@@ -56,12 +57,13 @@ export default function CocPlayer ({user} : {user: User | undefined}) {
                     <div>
                         {(coctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
                             <div className="search-container">
-                                <form>
-                                    <input type="text" placeholder={"Enter CoC Player Token"} name="token" id="token" onChange={handleChange} value={token} />
-                                    <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
-                                </form>
+                                <NewButton label="Add Player" size={"xsmall"} onClick={() => handleSubmit()} primary />
+                                {addAttempt ? <p>Add tag failed. Wrong or expired API Token</p> : <p></p>}
                             </div>
-                            : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")}/> 
+                            : <div>
+                                <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")}/>
+                                {addAttempt ? <p>Success!</p> : <p></p>}
+                            </div>
                         }
                     </div>
                     :

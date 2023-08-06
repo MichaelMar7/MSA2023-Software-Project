@@ -26,10 +26,24 @@ export const PlayerTagList = ({label, colour, playerTags = [], type = 0, id}: Pl
         }
     }
 
-    function rCocPlayer(tag: PlayerTag) {
+    function removeTag(tag: PlayerTag) {
         if (window.confirm(`Remove player tag?${tag.tag}`)) {
-            removeCocPlayer(tag);
-            window.location.reload()
+            console.log(type)
+            switch (type) {
+                case 0:
+                    removeCocPlayer(tag);
+                    window.location.reload()
+                    break;
+                case 1:
+                    removeCrPlayer(tag);
+                    window.location.reload()
+                    break;
+                case 2:
+                    removeBsPlayer(tag);
+                    window.location.reload()
+                    break;
+            }
+            
         }
     }
 
@@ -56,7 +70,7 @@ export const PlayerTagList = ({label, colour, playerTags = [], type = 0, id}: Pl
                     <li>
                         <span style={{display:"flex",}}>
                             <NewButton label={t.tag} size="large" primary backgroundColor={colour} width="180px" onClick={() => window.location.replace(url + encodeURIComponent(t.tag))} />
-                            <NewButton label="X" size="xsmall" backgroundColor="red" onClick={() => rCocPlayer(t)} />
+                            <NewButton label="X" size="xsmall" backgroundColor="red" onClick={() => removeTag(t)} />
                         </span>
                     </li>
                 ))}

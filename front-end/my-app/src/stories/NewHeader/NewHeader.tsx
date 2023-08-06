@@ -17,7 +17,7 @@ export const NewHeader = ({user, onLogin, onLogout, onRegister, navLinks = []}: 
     return (
         <div className="newHeader">
             <div className="heading">
-                <h1>Supercell Accounts API</h1>
+                <h1>Supercell Accounts Application</h1>
             </div>
             <div className="auth">
                 { user ? (

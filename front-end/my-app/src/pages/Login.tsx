@@ -10,7 +10,7 @@ export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [login, {error}] = useLoginMutation();
-    const [fail, setFail] = useState(false);
+    const [success, setSuccess] = useState(true);
     //const [response, setResponse] = useState<any>();
 
     const { data : coctags } = useUserQuery("");
@@ -20,8 +20,8 @@ export default function Login () {
     function submit (username: any, password: any) {
         login(JSON.stringify({username,password}))
         .unwrap()
-        .then((payload) => {setFail(false); navigate("/");})
-        .catch((error) => {setFail(true);});
+        .then((payload) => {setSuccess(true); navigate("/");})
+        .catch((error) => {setSuccess(false);});
         //console.log(user);
         //navigate("/");
         //window.location.reload()
@@ -35,7 +35,7 @@ export default function Login () {
                 <input type="password" placeholder="Password" name="search" id="search" onChange={e => setPassword(e.target.value)} />
                 <NewButton label="Log In" size="xsmall" onClick={() => submit(username,password)} primary />
             </form>
-            {fail === true ? <span>Login Failed</span> : <div></div>}
+            {success === true ?  <div></div> : <span>Login Failed</span>}
         </div>
         //<div>
         //    <SearchBar2 text1="Username" text2="Password" label="Log In" />

@@ -16,9 +16,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 export const BsPlayerCard = ({player} : BsPlayerCardProps) => {
-    console.log(player)
-    
-
     return ( <StyledCard>
         <CardHeader title={player.name} subheader={player.tag} />
         <CardContent>

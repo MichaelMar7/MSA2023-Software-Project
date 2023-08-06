@@ -97,7 +97,7 @@ namespace Back_End.Services
 
         public async Task RemoveCrPlayerTag(string id, string tag)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             if (user != null)
             {
                 _users.CrPlayerTags.Remove(_users.CrPlayerTags.Single(t => t.UserId == id && t.Tag == tag));
@@ -107,7 +107,7 @@ namespace Back_End.Services
 
         public async Task RemoveBsPlayerTag(string id, string tag)
         {
-            UserData user = await _users.UserDatas.SingleOrDefaultAsync(u => u.UserId == id);
+            User user = await _users.Users.SingleOrDefaultAsync(u => u.UserId == id);
             if (user != null)
             {
                 _users.BsPlayerTags.Remove(_users.BsPlayerTags.Single(t => t.UserId == id && t.Tag == tag));

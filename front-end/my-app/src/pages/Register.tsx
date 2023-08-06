@@ -13,18 +13,21 @@ export default function Register () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [register, response] = useRegisterMutation();
+    const [success, setSuccess] = useState(true)
     //const [redirect, setRedirect] = useState(false);
     let navigate = useNavigate();
     
     async function submit (username: any, password: any) {
         register(JSON.stringify({username,password}))
-        console.log(response)
+        .unwrap()
+        .then((payload) => {setSuccess(true); navigate("/login");})
+        .catch((error) => {setSuccess(false);});
         //await fetch("https://localhost:7008/Register", {
         //    method: "post",
         //    headers: {"Content-Type": "application/json"},
         //    body: JSON.stringify({username, password})
         //})
-        navigate("/login");
+        //navigate("/login");
     }
 
     return (
@@ -35,6 +38,7 @@ export default function Register () {
                 <input type="password" placeholder="Password" name="search" id="search" onChange={e => setPassword(e.target.value)} />
                 <NewButton label="Register" size="xsmall" onClick={() => submit(username,password)} primary />
             </form>
+            {success === true ?  <div></div> : <span>Username already in use</span>}
         </div>
         /* 
         <div>

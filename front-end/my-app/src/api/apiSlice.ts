@@ -93,20 +93,20 @@ export const api = createApi({
             }),
         }),
         addCocPlayerTag: builder.mutation({
-            query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddCocPlayerTag/${encodeURIComponent(tag)}`,
+            query: (playerTag: PlayerTagToken) => ({
+                url: `${encodeURIComponent(playerTag.userId)}/AddCocPlayerTag/${encodeURIComponent(playerTag.tag)}`,
                 method: "PUT",
             }),
         }),
         addCrPlayerTag: builder.mutation({
-            query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddCrPlayerTag/${encodeURIComponent(tag)}`,
+            query: (playerTag: PlayerTagToken) => ({
+                url: `${encodeURIComponent(playerTag.userId)}/AddCrPlayerTag/${encodeURIComponent(playerTag.tag)}`,
                 method: "PUT",
             }),
         }),
         addBsPlayerTag: builder.mutation({
-            query: ({id, tag}) => ({
-                url: `${encodeURIComponent(id)}/AddBsPlayerTag/${encodeURIComponent(tag)}`,
+            query: (playerTag: PlayerTagToken) => ({
+                url: `${encodeURIComponent(playerTag.userId)}/AddBsPlayerTag/${encodeURIComponent(playerTag.tag)}`,
                 method: "PUT",
             }),
         }),
@@ -117,14 +117,14 @@ export const api = createApi({
             }),
         }),
         addCrPlayerTag2: builder.mutation({
-            query: ({id, tag, token}) => ({
-                url: `${encodeURIComponent(id)}/AddCrPlayerTag2/${encodeURIComponent(tag)}?token=${encodeURIComponent(token)}`,
+            query: (playerTag: PlayerTagToken) => ({
+                url: `${encodeURIComponent(playerTag.userId)}/AddCrPlayerTag2/${encodeURIComponent(playerTag.tag)}?token=${encodeURIComponent(playerTag.token)}`,
                 method: "PUT",
             }),
         }),
         addBsPlayerTag2: builder.mutation({
-            query: ({id, tag, token}) => ({
-                url: `${encodeURIComponent(id)}/AddBsPlayerTag2/${encodeURIComponent(tag)}?token=${encodeURIComponent(token)}`,
+            query: (playerTag: PlayerTagToken) => ({
+                url: `${encodeURIComponent(playerTag.userId)}/AddBsPlayerTag2/${encodeURIComponent(playerTag.tag)}?token=${encodeURIComponent(playerTag.token)}`,
                 method: "PUT",
             }),
         }),
