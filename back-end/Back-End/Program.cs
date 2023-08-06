@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(options =>
 */
 
 //builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-//builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -67,7 +67,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy => {
             policy
-            .WithOrigins("http://localhost:3000" /*Host URL*/)
+            .WithOrigins("http://localhost:3000", "http://localhost:7008" /*Host URL*/)
             .AllowCredentials()
             .AllowAnyHeader()
             .AllowAnyMethod();

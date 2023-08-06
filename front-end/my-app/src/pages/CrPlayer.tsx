@@ -38,17 +38,22 @@ export default function CrPlayer ({user} : {user: User | undefined}) {
     return (
         <div>
             <span style={{display:"flex",}}>
-                    <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
-                    {(crctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
-                    <div className="search-container">
-                        <form>
-                            <input type="text" placeholder={"Enter Cr Player Token"} name="token" id="token" onChange={handleChange} value={token} />
-                            <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
-                        </form>
+                <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
+                { user ?
+                    <div>
+                        {(crctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
+                        <div className="search-container">
+                            <form>
+                                <input type="text" placeholder={"Enter Cr Player Token"} name="token" id="token" onChange={handleChange} value={token} />
+                                <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
+                            </form>
+                        </div>
+                        : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")} /> }
                     </div>
-                    : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")} /> }
-                    
-                </span>
+                    :
+                    <div></div>
+                }
+            </span>
             <CrPlayerCard player={crplayer} />
         </div>
     )

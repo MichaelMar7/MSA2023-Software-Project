@@ -69,7 +69,15 @@ namespace Back_End.Controllers
         [HttpPost("/Logout")]
         public async Task<ActionResult<User>> Logout()
         {
-            Response.Cookies.Delete("jwt");
+            
+            Response.Cookies.Delete("jwt", new CookieOptions
+            {
+                HttpOnly = true,
+                Domain = "localhost",
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddDays(-1),
+            });
             return Ok("logout");
         }
         

@@ -29,10 +29,21 @@ var testlinks: Array<NavLink> = [
     {label:"Search", link:"/Search"},
 ]
 
+var authlinks: Array<NavLink> = [
+    {label:"Home", link:"/"},
+    {label:"Search", link:"/Search"},
+    {label:"Profile", link:"/Profile"},
+]
+
+var noauthlinks: Array<NavLink> = [
+    {label:"Home", link:"/"},
+    {label:"Search", link:"/Search"},
+]
 
 function App() {
     const [user, setUser] = useState<User | undefined>();
-    //const [logout, mutationResult] = useLogoutMutation();
+    const [links, setLinks] = useState(noauthlinks)
+    const [logout] = useLogoutMutation();
     //const {data:authuser} = useUserQuery("");
     let navigate = useNavigate();
 
@@ -40,15 +51,22 @@ function App() {
         (
             async () => {
                 const response = await fetch("https://localhost:7008/User", {
+                    method: "GET",
                     headers: {"Content-Type": "application/json"},
                     credentials: "include",
                 });
                 const content = await response.json();
                 //console.log(content)
-                if (content.status !== 401)
+                if (content.status !== 401) {
                     setUser(content)
+                    setLinks(authlinks)
+                }
+                else {
+                    setUser(undefined)
+                    setLinks(noauthlinks)
+                }
         })()
-    }, [navigate]);
+    }, [useNavigate()]);
 
         /*
     async function logout() {
@@ -60,12 +78,8 @@ function App() {
     }
     */
 
-    const logout = async () => {
-        console.log("?");
-        await fetch("https://localhost:7008/Logout", {
-            headers: {"Content-Type": "application/json"},
-            credentials: "include",
-        });
+    const lout =  () => {
+        logout("").then(res => {navigate("/logout")});
     }
 
     function login() {
@@ -82,7 +96,7 @@ function App() {
 
     return (
         <div>
-            <NewHeader user={user} onLogin={() => login()} onLogout={logout} onRegister={() => register()} navLinks={testlinks} />
+            <NewHeader user={user} onLogin={() => login()} onLogout={lout} onRegister={() => register()} navLinks={links} />
                 <Routes>
                     <Route index path="/" element={<Home />}/>
                     <Route path="/login" element={<Login />} />

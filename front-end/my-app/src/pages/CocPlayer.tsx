@@ -52,15 +52,21 @@ export default function CocPlayer ({user} : {user: User | undefined}) {
         <div>
             <span style={{display:"flex",}}>
                 <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
-                {(coctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
-                <div className="search-container">
-                    <form>
-                        <input type="text" placeholder={"Enter CoC Player Token"} name="token" id="token" onChange={handleChange} value={token} />
-                        <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
-                    </form>
-                </div>
-                : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")}/> }
-                
+                { user ?
+                    <div>
+                        {(coctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
+                            <div className="search-container">
+                                <form>
+                                    <input type="text" placeholder={"Enter CoC Player Token"} name="token" id="token" onChange={handleChange} value={token} />
+                                    <NewButton label="Search" size={"xsmall"} onClick={() => handleSubmit()} primary />
+                                </form>
+                            </div>
+                            : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")}/> 
+                        }
+                    </div>
+                    :
+                    <div></div>
+                }
             </span>
             
             <CocPlayerCard player={cocplayer} />

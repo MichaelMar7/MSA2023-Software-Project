@@ -9,22 +9,22 @@ import { NewButton } from '../stories/NewButton/NewButton';
 export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [login, mutationResult] = useLoginMutation();
-    const {data:user} = useUserQuery("");
+    const [login, {error}] = useLoginMutation();
+    const [fail, setFail] = useState(false);
     //const [response, setResponse] = useState<any>();
 
     const { data : coctags } = useUserQuery("");
     //const [redirect, setRedirect] = useState(false);
     let navigate = useNavigate();
-    
-    
 
     function submit (username: any, password: any) {
         login(JSON.stringify({username,password}))
+        .unwrap()
+        .then((payload) => {setFail(false); navigate("/");})
+        .catch((error) => {setFail(true);});
         //console.log(user);
-        //console.log(JSON.parse(JSON.stringify(mutationResult)).data)
-        navigate("/");
-        window.location.reload()
+        //navigate("/");
+        //window.location.reload()
     }
 
     return (
@@ -35,6 +35,7 @@ export default function Login () {
                 <input type="password" placeholder="Password" name="search" id="search" onChange={e => setPassword(e.target.value)} />
                 <NewButton label="Log In" size="xsmall" onClick={() => submit(username,password)} primary />
             </form>
+            {fail === true ? <span>Login Failed</span> : <div></div>}
         </div>
         //<div>
         //    <SearchBar2 text1="Username" text2="Password" label="Log In" />

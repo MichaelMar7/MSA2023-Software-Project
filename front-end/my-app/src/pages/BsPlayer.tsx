@@ -40,6 +40,8 @@ export default function BsPlayer ({user} : {user: User | undefined}) {
     return (
         <div>
             <span style={{display:"flex",}}>
+            { user ?
+                <div>
                     <NewButton label="<<< Search" size="xsmall" onClick={() => navigate("/search")} />
                     {(crctags as Array<PlayerTag>).filter((t:any) => t.tag == tag).length === 0 ? 
                     <div className="search-container">
@@ -49,8 +51,12 @@ export default function BsPlayer ({user} : {user: User | undefined}) {
                         </form>
                     </div>
                     : <NewButton label="<<< Profile" size="xsmall" backgroundColor="green" onClick={() => navigate("/profile")} /> }
-                    
-                </span>
+                </div>
+                :
+                <div></div>
+            }
+                
+            </span>
                 <BsPlayerCard player={bsplayer} />
         </div>
     )
