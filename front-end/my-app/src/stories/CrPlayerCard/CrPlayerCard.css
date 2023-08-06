@@ -40,3 +40,27 @@
     width:"200px";
     background-color: #ddd;
 }
+
+@media screen and (max-width: 750px) {
+    
+    .cr-card-grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .cr-clan-grid-container {
+        grid-template-columns: auto;
+    }
+
+    .cr-card-grid-container {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .cr-clan-item-image {
+        grid-area: 1 / 1 / 1 / 1;
+        padding: 6px;
+    }
+}

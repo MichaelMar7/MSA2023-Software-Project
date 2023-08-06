@@ -81,10 +81,14 @@ export const ItemCard = (item: any) => {
             <div className="bs-grid-container-max">
                 {/*<div className="item"><b>{brawlerInfo.name}</b></div>*/}
                 <div className="item"><b>{brawlername}</b></div>
+                <div className="item"><img src={getBrawlerImage(brawlername)} height="50px" /></div>
                 <div className="item">Rank: {item.rank}</div>
                 <div className="item">Power Level: {item.power}</div>
                 <div className="item">Trophies: {item.trophies}</div>
                 <div className="item">Best: {item.highestTrophies}</div>
+                <div className="item">Star Powers: {item.starPowers.length}</div>
+                <div className="item">Gadgets: {item.gadgets.length}</div>
+                <div className="item">Gears: {item.gears.length}</div>
                 {/*<div className="item-image"><img src={brawlerInfo.imageUrl} height="50px" /></div>*/}
             </div>
             :

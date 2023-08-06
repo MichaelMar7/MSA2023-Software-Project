@@ -6,6 +6,14 @@
     width: 200px;
 }
 
+.clan-grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);;
+    margin: 10px;
+    width: 200px;
+}
+
 .grid-container-max {
     display: grid;
     grid-template-columns: auto auto;
@@ -37,6 +45,11 @@
     padding: 6px;
 }
 
+.clan-item-image {
+    grid-area: 1 / 2 / 3 / 3;
+    padding: 6px;
+}
+
 .item-header {
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-weight: 400;
@@ -55,3 +68,29 @@
 .legend-card-bgc {
     background-color: #ddd;
 }
+
+
+@media screen and (max-width: 750px) {
+    
+    .card-grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .clan-grid-container {
+        grid-template-columns: auto;
+    }
+
+    .card-grid-container {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .clan-item-image {
+        grid-area: 1 / 1 / 1 / 1;
+        padding: 6px;
+    }
+}
+

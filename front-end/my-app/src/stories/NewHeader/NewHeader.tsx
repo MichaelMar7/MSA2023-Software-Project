@@ -29,13 +29,21 @@ export const NewHeader = ({user, onLogin, onLogout, onRegister, navLinks = []}: 
                         </span>
                         <span className="welcome">
                             Welcome, <b>{user.username}</b>!
+                        
+                            <NewButton label="Log Out" onClick={onLogout} />
                         </span>
-                        <NewButton label="Log Out" onClick={onLogout} />
                     </div>
                 ) : (
                     <div>
-                        <NewButton label="Log In" onClick={onLogin} />
-                        <NewButton primary label="Register" onClick={onRegister} />
+                        <span className="navlinks">
+                            {navLinks.map(l => (
+                                <a className="navlink" href={l.link}>{l.label}</a>
+                            ))}
+                        </span>
+                        <span className="welcome">
+                            <NewButton label="Log In" onClick={onLogin} />
+                            <NewButton primary label="Register" onClick={onRegister} />
+                        </span>
                     </div>
                 )}
             </div>

@@ -132,11 +132,11 @@ export const CrPlayerCard = ({player} : CrPlayerCardProps) => {
 
             <br />
             {player.clan !== null ?
-                <div className="cr-grid-container" style={{width:600}}>
+                <div className="cr-clan-grid-container" style={{width:600}}>
                     <div className="item item-header">{player.clan?.name}</div>
                     <div className="item item-subheader">{player.clan?.tag}</div>
                     <div className="item item-subheader">{player.role.toLowerCase()}</div>
-                    <div className="item-image"></div>
+                    <div className="cr-clan-item-image"></div>
                 </div>
                 :
                 <div>

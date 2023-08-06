@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardActions, CardContent, CardHeader, IconButton, styled } from "@mui/material";
+import { Card, CardContent, CardHeader, styled } from "@mui/material";
 
 import "./CocPlayerCard.css"
 import { CocPlayer, PlayerItemLevel } from "../../models/CocPlayer";
@@ -61,28 +61,28 @@ export const CocPlayerCard = ({player} : CocPlayerCardProps) => {
 
             <br />
             {player.league !== null ?
-                <div className="grid-container" style={{width:600}}>
+                <div className="clan-grid-container" style={{width:600}}>
                     <div className="item item-header">League</div>
                     <div className="item item-subheader">{player.league?.name}</div>
-                    <div className="item-image"><img src={player.league?.iconUrls.small} /></div>
+                    <div className="clan-item-image"><img src={player.league?.iconUrls.small} /></div>
                 </div>
                 /*<StyledCard>
                     <CardHeader title="League" subheader={player.league?.name} />
                     <CardContent><img src={player.league?.iconUrls.small} /></CardContent>
                 </StyledCard>*/
                 :
-                <div className="grid-container" style={{width:600}}>
+                <div className="clan-grid-container" style={{width:600}}>
                     No League
                 </div>
             }
 
             <br />
             {player.clan !== null ?
-                <div className="grid-container" style={{width:600}}>
+                <div className="clan-grid-container" style={{width:600}}>
                     <div className="item item-header">{player.clan?.name}</div>
                     <div className="item item-subheader">{player.clan?.tag}</div>
                     <div className="item item-subheader">{player.role.toLowerCase()}</div>
-                    <div className="item-image"><img src={player.clan?.badgeUrls.small} /></div>
+                    <div className="clan-item-image"><img src={player.clan?.badgeUrls.small} /></div>
                 </div>
                 /*
                 <StyledCard>
@@ -90,7 +90,7 @@ export const CocPlayerCard = ({player} : CocPlayerCardProps) => {
                     <CardContent><img src={player.clan?.badgeUrls.small} /></CardContent>
                 </StyledCard>*/
                 :
-                <div className="grid-container" style={{width:600}}>
+                <div className="clan-grid-container" style={{width:600}}>
                     No clan
                 </div>
             }
