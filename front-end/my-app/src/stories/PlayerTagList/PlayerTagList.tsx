@@ -50,15 +50,15 @@ export const PlayerTagList = ({label, colour, playerTags = [], type = 0, id}: Pl
     var url : string;
     switch (type) {
         case 0: {
-            url = "http://localhost:3000/CocPlayer/";
+            url = "https://supercell-acounts-application.azurewebsites.net/CocPlayer/";
             break;
         }
         case 1: {
-            url = "http://localhost:3000/CrPlayer/";
+            url = "https://supercell-acounts-application.azurewebsites.net/CrPlayer/";
             break;
         }
         case 2: {
-            url = "http://localhost:3000/BsPlayer/";
+            url = "https://supercell-acounts-application.azurewebsites.net/BsPlayer/";
             break;
         }
     }

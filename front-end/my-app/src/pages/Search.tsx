@@ -23,9 +23,9 @@ export default function Search () {
         window.location.replace(url3);
     };
 
-    var url1 : string = "http://localhost:3000/CocPlayer/" + encodeURIComponent(tag);
-    var url2 : string = "http://localhost:3000/CrPlayer/" + encodeURIComponent(tag);
-    var url3 : string = "http://localhost:3000/BsPlayer/" + encodeURIComponent(tag);
+    var url1 : string = "https://supercell-acounts-application.azurewebsites.net/CocPlayer/" + encodeURIComponent(tag);
+    var url2 : string = "https://supercell-acounts-application.azurewebsites.net/CrPlayer/" + encodeURIComponent(tag);
+    var url3 : string = "https://supercell-acounts-application.azurewebsites.net/BsPlayer/" + encodeURIComponent(tag);
 
     return (<div>
         <div className="search-container">

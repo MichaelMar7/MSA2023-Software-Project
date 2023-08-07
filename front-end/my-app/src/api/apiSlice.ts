@@ -4,7 +4,7 @@ import { PlayerTagToken } from "../models/PlayerTagToken";
 
 export const api = createApi({
     reducerPath: "api",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://localhost:7008/" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://supercell-accounts-api.azurewebsites.net/" }),
     endpoints: (builder) => ({
         login : builder.mutation({
             query: (usercred) => ({

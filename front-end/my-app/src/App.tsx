@@ -50,7 +50,7 @@ function App() {
     useEffect(() => {
         (
             async () => {
-                const response = await fetch("https://localhost:7008/User", {
+                const response = await fetch("https://supercell-accounts-api.azurewebsites.net/User", {
                     method: "GET",
                     headers: {"Content-Type": "application/json"},
                     credentials: "include",

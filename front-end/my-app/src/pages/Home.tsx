@@ -4,6 +4,7 @@ export default function Home () { return (
         <p>This application uses React with Typescript for the front-end, ASP.NET Core for the back-end, and uses Azure for the database and deployment.</p>
         <p>In this application, users can search for players for the respective video games by input the player's player tag which can be found inside the player's account in their respective games and it would display their palyer's stats, like wins and progress; these stats can vary between each game.</p>
         <p>Users can also create an account for this application to store some of player tags so they can quickly access some of their saved players without manually searching them up. Users can add or remove these player tags from their profile.</p>
+        <p>This is the deployed version of the application via Microsoft Azure.</p>
      </div>
     )
 }
