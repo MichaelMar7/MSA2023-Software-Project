@@ -31,7 +31,7 @@ export default function CrPlayer ({user} : {user: User | undefined}) {
         var playerTag: PlayerTagToken = {userId, tag: tag2, token}
         //console.log({userId, tag, token})
         addCrPlayerTag(playerTag);
-        window.location.reload();
+        //window.location.reload();
     };
 
     //console.log(crplayer);

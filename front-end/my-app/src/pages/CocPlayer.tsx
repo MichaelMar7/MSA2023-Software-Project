@@ -33,7 +33,7 @@ export default function CocPlayer ({user} : {user: User | undefined}) {
         //console.log({userId, tag, token})
         addCocPlayerTag(playerTag);
         setAddAttempt(true);
-        window.location.reload();
+        //window.location.reload();
     };
 
         /*

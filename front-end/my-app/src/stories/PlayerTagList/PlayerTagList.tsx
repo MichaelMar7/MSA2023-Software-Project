@@ -28,19 +28,19 @@ export const PlayerTagList = ({label, colour, playerTags = [], type = 0, id}: Pl
 
     function removeTag(tag: PlayerTag) {
         if (window.confirm(`Remove player tag?${tag.tag}`)) {
-            console.log(type)
+            //console.log(type)
             switch (type) {
                 case 0:
                     removeCocPlayer(tag);
-                    window.location.reload()
+                    //window.location.reload()
                     break;
                 case 1:
                     removeCrPlayer(tag);
-                    window.location.reload()
+                    //window.location.reload()
                     break;
                 case 2:
                     removeBsPlayer(tag);
-                    window.location.reload()
+                    //window.location.reload()
                     break;
             }
             

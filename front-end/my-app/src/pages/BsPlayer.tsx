@@ -32,7 +32,7 @@ export default function BsPlayer ({user} : {user: User | undefined}) {
         var playerTag: PlayerTagToken = {userId, tag: tag2, token}
         //console.log({userId, tag, token})
         addBsPlayerTag(playerTag);
-        window.location.reload();
+        //window.location.reload();
     };
 
     //console.log(bsplayer);
